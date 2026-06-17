@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0f172a; /* Monsoon Slate dark base */
+  --foreground: #f8fafc;
+  --arabian-sea: #003049;
+  --monsoon-slate: #1e293b;
+  --gateway-gold: #d4af37;
+  --frosted-pearl: rgba(255, 255, 255, 0.1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-arabian-sea: var(--arabian-sea);
+  --color-monsoon-slate: var(--monsoon-slate);
+  --color-gateway-gold: var(--gateway-gold);
+  --color-frosted-pearl: var(--frosted-pearl);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: var(--frosted-pearl);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
