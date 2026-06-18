@@ -1,24 +1,76 @@
 'use client';
 
 import { useState } from 'react';
-import { Upload, Camera, CheckCircle, AlertCircle } from 'lucide-react';
-import { aiMocks } from '@/utils/ai-mocks';
+import { Upload, Camera, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import Link from 'next/link';
+import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/context/AuthProvider';
+import { ProtectedRoute } from '@/components/ProtectedRoute';
 
 type DiagnosticState = 'idle' | 'analyzing' | 'done';
 
-export default function DiagnosticsPage() {
+interface DiagnosticResult {
+  undertone: string;
+  makeupRecommendations: {
+    foundation: string[];
+    lipColors: string[];
+    eyeshadows: string[];
+  };
+  hairstyles: {
+    flattering: string[];
+    avoid: string[];
+  };
+  skinType?: string;
+  personalityStyle?: string;
+}
+
+function DiagnosticsContent() {
+  const { user } = useAuth();
   const [state, setState] = useState<DiagnosticState>('idle');
   const [dragOver, setDragOver] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
+  const [result, setResult] = useState<DiagnosticResult | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const result = aiMocks.diagnosticStudio;
-
-  const handleFile = (file: File) => {
+  const handleFile = async (file: File) => {
     const url = URL.createObjectURL(file);
     setPreview(url);
     setState('analyzing');
-    setTimeout(() => setState('done'), 2500);
+    setError(null);
+
+    // Convert to base64
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const base64 = (e.target?.result as string).split(',')[1];
+      const mimeType = file.type;
+
+      try {
+        const res = await fetch('/api/ai/diagnostics', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ imageBase64: base64, mimeType }),
+        });
+
+        if (!res.ok) throw new Error('AI analysis failed');
+        const data: DiagnosticResult = await res.json();
+        setResult(data);
+
+        // Save results to user profile in Supabase
+        if (user) {
+          await supabase
+            .from('users')
+            .update({ ai_diagnostic_results: data })
+            .eq('id', user.id);
+        }
+
+        setState('done');
+      } catch (err) {
+        console.error(err);
+        setError('Analysis failed. Please try again.');
+        setState('idle');
+      }
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleDrop = (e: React.DragEvent) => {
@@ -38,6 +90,12 @@ export default function DiagnosticsPage() {
           </div>
           <Link href="/home" className="text-amber-400 hover:text-amber-300 text-sm transition-colors">Skip →</Link>
         </div>
+
+        {error && (
+          <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+            {error}
+          </div>
+        )}
 
         {state === 'idle' && (
           <div
@@ -69,14 +127,14 @@ export default function DiagnosticsPage() {
           <div className="glass-panel rounded-2xl p-16 text-center border border-white/10">
             {preview && <img src={preview} alt="Selfie preview" className="w-32 h-32 rounded-full mx-auto mb-6 object-cover ring-4 ring-amber-500/40" />}
             <div className="flex justify-center mb-4">
-              <div className="w-10 h-10 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
+              <Loader2 size={36} className="text-amber-400 animate-spin" />
             </div>
             <p className="text-white font-medium">Analyzing your beauty profile…</p>
-            <p className="text-slate-400 text-sm mt-1">Our AI is identifying your undertone and recommending styles</p>
+            <p className="text-slate-400 text-sm mt-1">Gemini AI is identifying your undertone and recommending styles</p>
           </div>
         )}
 
-        {state === 'done' && (
+        {state === 'done' && result && (
           <div className="space-y-6">
             {/* Undertone Card */}
             <div className="glass-panel rounded-2xl p-6 border border-white/10 flex items-center gap-6">
@@ -84,7 +142,9 @@ export default function DiagnosticsPage() {
               <div>
                 <p className="text-slate-400 text-sm uppercase tracking-wider mb-1">Your Undertone</p>
                 <p className="text-2xl font-serif text-amber-400">{result.undertone}</p>
-                <div className="flex items-center gap-2 mt-2"><CheckCircle size={14} className="text-green-400" /><span className="text-green-400 text-sm">Analysis complete</span></div>
+                {result.skinType && <p className="text-slate-400 text-sm mt-1">Skin Type: {result.skinType}</p>}
+                {result.personalityStyle && <p className="text-slate-300 text-sm mt-1 italic">{result.personalityStyle}</p>}
+                <div className="flex items-center gap-2 mt-2"><CheckCircle size={14} className="text-green-400" /><span className="text-green-400 text-sm">AI Analysis complete</span></div>
               </div>
             </div>
 
@@ -94,7 +154,7 @@ export default function DiagnosticsPage() {
               {(['foundation', 'lipColors', 'eyeshadows'] as const).map(category => (
                 <div key={category} className="mb-4 last:mb-0">
                   <p className="text-slate-400 text-xs uppercase tracking-wider mb-2">{category}</p>
-                  <div className="flex gap-3">
+                  <div className="flex gap-3 flex-wrap">
                     {result.makeupRecommendations[category].map(hex => (
                       <div key={hex} className="flex flex-col items-center gap-1">
                         <div className="w-10 h-10 rounded-full ring-2 ring-white/20" style={{ backgroundColor: hex }} />
@@ -122,12 +182,27 @@ export default function DiagnosticsPage() {
               </div>
             </div>
 
-            <Link href="/home" className="block w-full py-3.5 text-center bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold rounded-xl transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-              Continue to My Home →
-            </Link>
+            <div className="flex gap-3">
+              <button
+                onClick={() => { setState('idle'); setPreview(null); setResult(null); }}
+                className="flex-1 py-3.5 border border-white/20 text-slate-300 rounded-xl hover:border-white/40 transition-colors text-sm">
+                Try Another Photo
+              </button>
+              <Link href="/home" className="flex-1 py-3.5 text-center bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold rounded-xl transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+                Continue to Home →
+              </Link>
+            </div>
           </div>
         )}
       </div>
     </main>
+  );
+}
+
+export default function DiagnosticsPage() {
+  return (
+    <ProtectedRoute>
+      <DiagnosticsContent />
+    </ProtectedRoute>
   );
 }
