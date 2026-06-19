@@ -12,7 +12,7 @@ export async function POST(request: Request) {
       return NextResponse.json(aiMocks.monsoonAdvisor);
     }
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
 
     // Get current month to infer season
     const month = new Date().getMonth(); // 0-indexed
