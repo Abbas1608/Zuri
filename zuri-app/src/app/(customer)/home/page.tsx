@@ -93,6 +93,7 @@ function CustomerHomeContent() {
         <h1 className="font-serif text-2xl text-white">Zuri</h1>
         <div className="flex items-center gap-4">
           <Link href="/discover" className="text-slate-400 hover:text-white text-sm transition-colors">Discover</Link>
+          <Link href="/style-mirror" className="text-amber-400 hover:text-amber-300 text-sm transition-colors font-medium">Style Mirror ✨</Link>
           <Link href="/my-bookings" className="text-slate-400 hover:text-white text-sm transition-colors">My Bookings</Link>
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-sm font-medium">
@@ -202,6 +203,24 @@ function CustomerHomeContent() {
               <p className="text-slate-400">No salons yet. <Link href="/signup" className="text-amber-400">Owners: add your salon →</Link></p>
             </div>
           )}
+        </section>
+
+        {/* Style Mirror CTA */}
+        <section>
+          <div className="relative rounded-2xl overflow-hidden border border-amber-500/30 p-6 flex items-center justify-between gap-6"
+            style={{ background: 'linear-gradient(135deg, rgba(212,175,55,0.08) 0%, rgba(0,48,73,0.4) 100%)', boxShadow: '0 0 40px rgba(212,175,55,0.08)' }}>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(212,175,55,0.12),transparent_60%)] pointer-events-none" />
+            <div className="relative z-10">
+              <p className="text-amber-400 text-sm uppercase tracking-wider mb-1 flex items-center gap-2"><Sparkles size={12} /> New · AI Vision</p>
+              <h3 className="text-white font-serif text-xl">Bandra Style Mirror</h3>
+              <p className="text-slate-400 text-sm mt-1">Upload any inspiration photo — AI extracts the look and finds local salons that can recreate it.</p>
+            </div>
+            <Link href="/style-mirror"
+              className="relative z-10 shrink-0 px-6 py-3 font-bold rounded-xl text-sm transition-all text-slate-900"
+              style={{ background: 'linear-gradient(135deg, #d4af37, #b8860b)', boxShadow: '0 0 24px rgba(212,175,55,0.35)' }}>
+              Try it →
+            </Link>
+          </div>
         </section>
 
         {/* AI Diagnostic CTA */}

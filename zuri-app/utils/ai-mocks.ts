@@ -31,5 +31,14 @@ export const aiMocks = {
     topAsset: "92% of reviews praise your Senior Stylist team for their balayage execution.",
     frictionPoint: "Wait times on Friday evenings are frequently cited as frustrating.",
     growthSuggestion: "AI recommends allocating an extra junior stylist to hair spas between 4 PM - 7 PM on Fridays to counter volume bottlenecks."
+  },
+
+  styleMirror: {
+    fallbackTags: [
+      "caramel balayage",
+      "curtain bangs",
+      "voluminous blowout",
+      "face framing layers",
+    ]
   }
 };

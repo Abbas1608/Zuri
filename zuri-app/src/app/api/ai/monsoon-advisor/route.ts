@@ -4,6 +4,9 @@ import { aiMocks } from '@/utils/ai-mocks';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
+// ─── Model fallback order (try lite first → full flash on 503) ────────────────
+const MODELS = ['gemini-2.5-flash-lite', 'gemini-2.5-flash'];
+
 export async function POST(request: Request) {
   try {
     const { hairType, skinType, area = 'Mumbai' } = await request.json();
@@ -11,8 +14,6 @@ export async function POST(request: Request) {
     if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY === 'PASTE_YOUR_GEMINI_KEY_HERE') {
       return NextResponse.json(aiMocks.monsoonAdvisor);
     }
-
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
 
     // Get current month to infer season
     const month = new Date().getMonth(); // 0-indexed
@@ -43,14 +44,32 @@ Respond in VALID JSON only (no markdown):
 
 Be specific to Mumbai's climate. Reference local neighborhoods (Bandra, Juhu, Colaba etc.).`;
 
-    const result = await model.generateContent(prompt);
-    const text = result.response.text().trim();
-    const jsonText = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-    const parsed = JSON.parse(jsonText);
+    let lastError: unknown = null;
 
-    return NextResponse.json(parsed);
+    for (const modelName of MODELS) {
+      try {
+        const model = genAI.getGenerativeModel({ model: modelName });
+        const result = await model.generateContent(prompt);
+        const text = result.response.text().trim();
+        const jsonText = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+        const parsed = JSON.parse(jsonText);
+        console.log(`Monsoon advisor: success with model ${modelName}`);
+        return NextResponse.json(parsed);
+      } catch (err: unknown) {
+        const e = err as { status?: number };
+        lastError = err;
+        if (e?.status === 503) {
+          console.warn(`${modelName} returned 503, trying next model...`);
+          continue;
+        }
+        throw err;
+      }
+    }
+
+    throw lastError;
   } catch (error) {
     console.error('Monsoon advisor AI error:', error);
+    // Always fall back to mock data — home page should never break
     return NextResponse.json(aiMocks.monsoonAdvisor);
   }
 }
