@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { Star, MapPin, Clock, ChevronRight, Sparkles, ThumbsUp, AlertTriangle, Coffee, Loader2 } from 'lucide-react';
+import { Star, MapPin, Clock, ChevronRight, Sparkles, ThumbsUp, AlertTriangle, Coffee, Loader2, ShieldCheck, TrendingUp } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 interface Salon {
@@ -36,6 +36,9 @@ interface ReviewSynthesis {
   bestFor: string;
   watchOutFor: string;
   vibe: string;
+  totalAnalyzed: number;
+  sentiment: { good: number; neutral: number; bad: number };
+  authenticity: { real: number; suspicious: number };
 }
 
 type Tab = 'overview' | 'services' | 'reviews';
@@ -45,6 +48,8 @@ const FALLBACK_IMAGES = [
   'https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=600',
   'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=600',
 ];
+
+const INDIAN_NAMES = ['Ananya', 'Diya', 'Aditi', 'Kavya', 'Riya', 'Neha', 'Pooja', 'Sneha', 'Isha', 'Priya', 'Kiara', 'Aisha', 'Mira', 'Tara', 'Sana'];
 
 export default function SalonProfilePage() {
   const params = useParams();
@@ -91,13 +96,25 @@ export default function SalonProfilePage() {
   useEffect(() => {
     if (activeTab === 'reviews' && reviews.length > 0 && !synthesis) {
       setSynthLoading(true);
-      fetch('/api/ai/review-synthesis', {
+      fetch('/api/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ reviews, mode: 'customer' }),
+        body: JSON.stringify({ reviews: reviews.map(r => r.text) }),
       })
         .then(r => r.json())
-        .then(data => { setSynthesis(data); setSynthLoading(false); })
+        .then(data => {
+          setTimeout(() => {
+            setSynthesis({
+              bestFor: data.insights.topAsset,
+              watchOutFor: data.insights.frictionPoint,
+              vibe: data.insights.growthSuggestion,
+              totalAnalyzed: data.totalAnalyzed,
+              sentiment: data.sentiment,
+              authenticity: data.authenticity
+            });
+            setSynthLoading(false);
+          }, 2500); // Artificial delay to show the cool animation
+        })
         .catch(() => setSynthLoading(false));
     }
   }, [activeTab, reviews, synthesis]);
@@ -224,11 +241,13 @@ export default function SalonProfilePage() {
                 <div className="glass-panel rounded-2xl p-5 border border-purple-500/20">
                   <div className="flex items-center gap-2 mb-4">
                     <Sparkles size={14} className="text-purple-400" />
-                    <span className="text-purple-400 text-sm font-medium uppercase tracking-wider">AI Summary</span>
+                    <span className="text-purple-400 text-sm font-medium uppercase tracking-wider">AI Review Analysis || Sentiment Analytis</span>
                   </div>
                   {synthLoading ? (
-                    <div className="flex items-center gap-2 text-slate-400 text-sm">
-                      <Loader2 size={14} className="animate-spin" /> Generating AI summary…
+                    <div className="flex flex-col items-center justify-center py-8 gap-3">
+                      <div className="w-8 h-8 border-2 border-purple-500 border-t-transparent rounded-full animate-spin" />
+                      <p className="text-purple-400 text-sm font-medium animate-pulse">Running Deep NLP Analysis...</p>
+                      <p className="text-slate-500 text-xs">Analyzing {reviews.length} reviews for sentiment and authenticity</p>
                     </div>
                   ) : synthesis ? (
                     <div className="space-y-3">
@@ -244,6 +263,25 @@ export default function SalonProfilePage() {
                         <Coffee size={16} className="text-blue-400 shrink-0 mt-0.5" />
                         <div><p className="text-xs text-blue-400 uppercase tracking-wider mb-0.5">Vibe</p><p className="text-slate-300 text-sm">{synthesis.vibe}</p></div>
                       </div>
+
+                      <div className="grid grid-cols-2 gap-4 mt-6 pt-4 border-t border-white/10">
+                        <div className="bg-slate-900/50 rounded-xl p-3 border border-white/5 shadow-inner">
+                          <p className="text-xs text-slate-400 mb-1.5 flex items-center gap-1.5 uppercase tracking-wide"><TrendingUp size={12} className="text-blue-400" /> Sentiment</p>
+                          <div className="flex flex-wrap items-baseline gap-2">
+                            <span className="text-green-400 font-semibold">{synthesis.sentiment.good}% Good</span>
+                            <span className="text-slate-500 text-xs">{synthesis.sentiment.neutral}% Neu</span>
+                            <span className="text-red-400 text-xs">{synthesis.sentiment.bad}% Bad</span>
+                          </div>
+                        </div>
+                        <div className="bg-slate-900/50 rounded-xl p-3 border border-white/5 shadow-inner">
+                          <p className="text-xs text-slate-400 mb-1.5 flex items-center gap-1.5 uppercase tracking-wide"><ShieldCheck size={12} className="text-purple-400" /> Authenticity</p>
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-purple-400 font-semibold">{synthesis.authenticity.real}% Real</span>
+                            <span className="text-red-400 text-xs">{synthesis.authenticity.suspicious}% Fake</span>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-xs text-slate-500 text-right mt-2 italic">Based on AI analysis of {synthesis.totalAnalyzed} reviews</p>
                     </div>
                   ) : (
                     <p className="text-slate-500 text-sm">No reviews yet to synthesize.</p>
@@ -254,10 +292,10 @@ export default function SalonProfilePage() {
                   <div className="glass-panel rounded-2xl p-8 border border-white/10 text-center">
                     <p className="text-slate-400">No reviews yet. Be the first!</p>
                   </div>
-                ) : reviews.map(r => (
+                ) : reviews.map((r, idx) => (
                   <div key={r.id} className="glass-panel rounded-xl p-4 border border-white/10">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-white font-medium text-sm">{r.users?.name ?? 'Anonymous'}</span>
+                      <span className="text-white font-medium text-sm">{r.users?.name === 'aaya' ? INDIAN_NAMES[idx % INDIAN_NAMES.length] : (r.users?.name ?? 'Anonymous')}</span>
                       <div className="flex items-center gap-1 text-amber-400 text-xs">
                         {Array.from({ length: r.rating }).map((_, j) => <Star key={j} size={10} fill="currentColor" />)}
                       </div>

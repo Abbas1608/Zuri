@@ -5,7 +5,7 @@ import { aiMocks } from '@/utils/ai-mocks';
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
 // ─── Model fallback order (try lite first → full flash on 503) ────────────────
-const MODELS = ['gemini-2.5-flash-lite', 'gemini-2.5-flash'];
+const MODELS = ['gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-1.5-flash'];
 
 export async function POST(request: Request) {
   try {
@@ -58,8 +58,8 @@ Be specific to Mumbai's climate. Reference local neighborhoods (Bandra, Juhu, Co
       } catch (err: unknown) {
         const e = err as { status?: number };
         lastError = err;
-        if (e?.status === 503) {
-          console.warn(`${modelName} returned 503, trying next model...`);
+        if (e?.status === 503 || e?.status === 429) {
+          console.warn(`${modelName} returned ${e?.status}, trying next model...`);
           continue;
         }
         throw err;
