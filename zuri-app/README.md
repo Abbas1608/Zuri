@@ -1,36 +1,214 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+# 🌟 Zuri 🌟
+**Mumbai's Premium AI-Powered Salon Marketplace**
 
-First, run the development server:
+<img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800" alt="Zuri Logo" width="250" style="border-radius: 20px; box-shadow: 0 0 20px rgba(212,175,55,0.3); margin-top: 15px; margin-bottom: 25px;">
 
+[![Version](https://img.shields.io/badge/Version-1.0.0-amber.svg?style=for-the-badge)](#)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](#)
+[![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?style=for-the-badge&logo=supabase)](#)
+[![Gemini](https://img.shields.io/badge/Google_Gemini-AI-4285F4?style=for-the-badge&logo=google)](#)
+
+</div>
+
+<br />
+
+## 📖 Introduction
+Welcome to **Zuri**, the ultimate digital bridge between beauty seekers and premium salon owners. Built with state-of-the-art Next.js and powered by Google Gemini AI and a Python NLP backend, Zuri offers an intelligent, intuitive, and hyper-personalized salon booking experience. From AI-driven diagnostics predicting how Mumbai's humidity will affect your hair, to AI sentiment analysis that filters out fake reviews—Zuri redefines luxury grooming in the digital age.
+
+Our platform operates on a stunning **Dark Theme** featuring an elegant signature Amber accent color: `Background / Theme Accent Color: #d4af37`, guaranteeing a premium, luxurious feel right from the first click.
+
+---
+
+## 🤖 AI Features
+
+### 👤 For Customers (Beauty Seekers)
+
+#### 1. Monsoon & Humidity Advisor
+* **What is it:** An intelligent weather-aware module that predicts how local humidity and weather (like Mumbai monsoons) will impact your hair.
+* **Input:** Real-time location data / weather conditions.
+* **Output:** Curated, highly specific hair-care recommendations (e.g., anti-frizz treatments, keratin suggestions) tailored to the day's humidity.
+
+#### 2. AI Style Mirror
+* **What is it:** A cutting-edge virtual consultation tool that suggests the best haircut and styling tailored to you.
+* **Input:** Facial structure description, current hair length, and desired vibe.
+* **Output:** AI-generated style recommendations, reference aesthetics, and a list of salons specializing in that exact cut.
+
+#### 3. AI Diagnostics Studio (Skin & Color Test)
+* **What is it:** A comprehensive diagnostic engine analyzing your unique features to recommend the best color palettes and skincare routines.
+* **Input:** User responses to skin type, undertone, and lifestyle quizzes.
+* **Output:** 
+  * **A. Skin:** Personalized skincare routines, facial treatment recommendations, and product ingredients to avoid.
+  * **B. Color Test:** Your exact "color season" profile and customized makeup/hair color suggestions that perfectly complement your complexion.
+
+#### 4. AI Review Analysis | Sentiment Analysis
+* **What is it:** An NLP-powered engine that reads hundreds of salon reviews instantly to give you the ultimate truth.
+* **Input:** Raw user reviews for a specific salon.
+* **Output:** A synthesized "Vibe Meter", Trust Score (filtering out fake reviews), and summarized insights ("Best for", "Watch out for").
+
+#### 5. Booking: Solo & Group
+* **What is it:** A seamless booking interface that adapts whether you're going alone or planning a bridal party.
+* **Input:** Desired date, time, services, and party size.
+* **Output:** Instant appointment confirmation, dynamic pricing, and conflict-free scheduling with your chosen salon.
+
+#### 6. Hair Care Tips (Smart Post-Treatment Feed)
+* **What is it:** A dynamic and highly contextual feed generating precise hair maintenance regimes after every salon visit to protect your investment.
+* **Input:** The user's exact diagnosed hair type, their recent salon treatments (e.g., Keratin, Balayage, Highlights), and local environmental factors like water hardness.
+* **Output:** Step-by-step actionable routines, curated organic product recommendations, and automated reminders for touch-up appointments perfectly timed to extend the life of the treatment.
+
+<br />
+
+### 🏪 For Salon Owners (Partners)
+
+#### 1. Manage Bookings
+* **What is it:** A robust daily calendar to organize and transition client appointments.
+* **Input:** Incoming customer booking requests.
+* **Output:** Organized columns tracking appointments by status: `Pending`, `Confirmed`, and `Completed` for accurate daily records.
+
+#### 2. Manage Daily Customers & Analytics
+* **What is it:** A high-level overview of the salon's daily financial and operational health.
+* **Input:** Completed bookings and payment data.
+* **Output:** An interactive dashboard displaying exactly how the business is doing: *Today's Customers*, *Total Appointments*, *Average Rating*, and *Total Revenue*.
+
+#### 3. Update Profile Details Using AI
+* **What is it:** An automated profile enhancement tool for owners.
+* **Input:** Basic, raw descriptions of the salon and its services.
+* **Output:** Beautifully written, SEO-optimized "About Us" sections and polished service descriptions generated by AI to attract high-end clientele.
+
+#### 4. AI Review Analysis (Owner Dashboard)
+* **What is it:** Insightful analytics to help owners understand customer sentiment and improve service.
+* **Input:** Incoming customer ratings and textual reviews.
+* **Output:** Actionable growth suggestions, top-performing assets, and specific friction points derived from NLP sentiment analysis.
+
+---
+
+## ⚙️ Project Setup & Installation
+
+### Prerequisites
+- Node.js (v18.17 or higher)
+- Python (3.9 or higher)
+- npm or yarn or pnpm
+- A [Supabase](https://supabase.com/) Account (for Database & Auth)
+- A [Google Gemini](https://aistudio.google.com/) API Key
+
+### Step-by-Step Guide
+
+**1. Clone the Repository**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/zuri-app.git
+cd zuri-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**2. Setup Environment Variables (.env.local)**
+Create your environment file using the terminal:
+```bash
+# On Mac/Linux:
+touch .env.local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# On Windows (PowerShell):
+New-Item .env.local -ItemType File
+```
+Open `.env.local` and add your API keys:
+```env
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL="https://your-project-url.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="your-anon-key-here"
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Google Gemini AI Configuration
+GEMINI_API_KEY="your-gemini-api-key-here"
+```
 
-## Learn More
+**3. Install Frontend Dependencies**
+```bash
+npm install
+npm install uuid @types/uuid
+```
 
-To learn more about Next.js, take a look at the following resources:
+**4. Install Python Backend Dependencies (for NLP Analysis)**
+```bash
+pip install -r api/requirements.txt
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**5. Run the Project (Dual Servers)**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+*Start the Python NLP Backend:*
+```bash
+python -m uvicorn api.index:app --reload --port 8000
+```
 
-## Deploy on Vercel
+*Start the Next.js Frontend (Open a new terminal tab):*
+```bash
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Navigate to `http://localhost:3000` to view the application!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🌈 Project Workflow
+
+<div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+<pre style="background: transparent; border: none; color: #cbd5e1; font-family: monospace;">
+<span style="color: #60a5fa; font-weight: bold;">[ 🌍 Landing Page ]</span>
+        │
+        ▼
+<span style="color: #c084fc; font-weight: bold;">[ 🔑 Authentication (Login / Signup) ]</span>
+        │
+        ├──► <span style="color: #fbbf24; font-weight: bold;">[ 👤 Customer Flow ]</span>
+        │         ├──► 🧭 Discover Salons
+        │         ├──► 🤖 AI Diagnostics (Skin/Color/Humidity)
+        │         ├──► 🗓️ Booking Engine
+        │         └──► 💇‍♀️ View Hair Care Tips
+        │
+        └──► <span style="color: #34d399; font-weight: bold;">[ 🏪 Salon Owner Flow ]</span>
+                  ├──► 📊 Analytics Dashboard (Revenue/Footfall)
+                  ├──► 📅 Appointments Management
+                  ├──► 🌟 AI Review Sentiment Dashboard
+                  └──► ⚙️ Profile & Service Setup
+</pre>
+</div>
+
+---
+
+## 🎨 UI Design Showcase
+
+Here is a visual tour of the Zuri platform across the workflow.
+
+- **1. Landing Page:**
+  ![Landing Page](Output_image/1_landing.png)
+  
+- **2. Authentication / Signup:**
+  ![Signup Screen](Output_image/2_signup.png)
+
+- **3. Customer Flow - Discover Salons:**
+  ![Discover Salons](Output_image/3_discover.png)
+  
+- **4. Customer Flow - AI Diagnostics Studio:**
+  ![Diagnostics Tool](Output_image/4_diagnostics.png)
+
+- **5. Customer Flow - Salon Booking:**
+  ![Booking Screen](Output_image/5_booking.png)
+
+- **6. Salon Owner Flow - Analytics Dashboard:**
+  ![Owner Dashboard](Output_image/6_owner_dashboard.png)
+
+---
+
+## ℹ️ Project Information
+
+* **Version:** 1.0.0
+* **Framework:** Next.js 15 (App Router)
+* **Styling:** Tailwind CSS (Theme Accent: `#d4af37`)
+* **Database & Auth:** Supabase
+* **AI Provider:** Google Generative AI (Gemini Flash)
+* **NLP Backend:** Python (FastAPI / Uvicorn)
+* **Icons:** Lucide React
+
+<br />
+
+<div align="center">
+  <p style="color: #d4af37; font-size: 16px; font-style: italic; font-weight: bold;">
+    ✨ Elevating beauty through the precision of Artificial Intelligence. Where technology meets elegance. ✨
+  </p>
+</div>
