@@ -33,29 +33,47 @@ Our platform operates on a stunning **Dark Theme** featuring an elegant signatur
 #### 2. AI Style Mirror
 * **What is it:** A cutting-edge virtual consultation tool that suggests the best haircut and styling tailored to you.
 * **Input:** Facial structure description, current hair length, and desired vibe.
-* **Output:** AI-generated style recommendations, reference aesthetics, and a list of salons specializing in that exact cut.
+* **Output:** AI-generated style recommendations, reference aesthetics, and a list of salons specializing in that exact cut.  
+![AI Bandra Style Mirror](Output_Image/Zuri_AI_styleMirror.png)
 
 #### 3. AI Diagnostics Studio (Skin & Color Test)
 * **What is it:** A comprehensive diagnostic engine analyzing your unique features to recommend the best color palettes and skincare routines.
 * **Input:** User responses to skin type, undertone, and lifestyle quizzes.
+* AI Diagnostics Studio
+![AI Diagnostics Studio](Output_Image/Zuri_AI_Diagonstic.png)
 * **Output:** 
-  * **A. Skin:** Personalized skincare routines, facial treatment recommendations, and product ingredients to avoid.
-  * **B. Color Test:** Your exact "color season" profile and customized makeup/hair color suggestions that perfectly complement your complexion.
+  * **A. Skin:** Personalized skincare routines, facial treatment recommendations, and product ingredients to avoid.     
+ 
+ AI Diagnostics Studio:Skin Care Analysis  
+![AI Diagnostics Studio](Output_Image/Zuri_AID_Result_A.png)
+
+  * **B. Color Test:** Your exact "color season" profile and customized makeup/hair color suggestions that perfectly complement your complexion.    
+ AI Diagnostics Studio:Color Analysis
+![AI Diagnostics Studio](Output_Image/Zuri_AID_Result_B.png)
+
 
 #### 4. AI Review Analysis | Sentiment Analysis
 * **What is it:** An NLP-powered engine that reads hundreds of salon reviews instantly to give you the ultimate truth.
 * **Input:** Raw user reviews for a specific salon.
-* **Output:** A synthesized "Vibe Meter", Trust Score (filtering out fake reviews), and summarized insights ("Best for", "Watch out for").
+* **Output:** A synthesized "Vibe Meter", Trust Score (filtering out fake reviews), and summarized insights ("Best for", "Watch out for").  
+![AI Haircuts](Output_Image/Zuri_Ai_ReviewAnalysis(2).png)
 
 #### 5. Booking: Solo & Group
 * **What is it:** A seamless booking interface that adapts whether you're going alone or planning a bridal party.
 * **Input:** Desired date, time, services, and party size.
-* **Output:** Instant appointment confirmation, dynamic pricing, and conflict-free scheduling with your chosen salon.
+* **Output:** Instant appointment confirmation, dynamic pricing, and conflict-free scheduling with your chosen salon.  
+* Salon Appointment Booking: Solo   
+![Solo Appointment Booking](Output_Image/Zuri_Booking_solo.png)
+* Salon Appointment Booking: Group   
+![Group Appointment Booking](Output_Image/Zuri_Gbooking_02.png)
 
 #### 6. Hair Care Tips (Smart Post-Treatment Feed)
 * **What is it:** A dynamic and highly contextual feed generating precise hair maintenance regimes after every salon visit to protect your investment.
 * **Input:** The user's exact diagnosed hair type, their recent salon treatments (e.g., Keratin, Balayage, Highlights), and local environmental factors like water hardness.
 * **Output:** Step-by-step actionable routines, curated organic product recommendations, and automated reminders for touch-up appointments perfectly timed to extend the life of the treatment.
+![Hair Care Tips](Output_Image/Zuri_Hair_Result-01.png)
+![Hair Care Tips](Output_Image/Zuri_Hair_result_02.png)
+
 
 <br />
 
@@ -188,8 +206,8 @@ Here is a visual tour of the Zuri platform across the workflow.
   
 - **4. Customer Flow - Zuri AI Feature**
   ![Diagnostics Tool](Output_Image/Zuri_AIFactures.png)
-
-## AI  Based Features
+<!-- 
+ ## AI  Based Features
 - **5.Customer Flow - AI Hair Care Tips (input)**
   ![Hair Care Tips](Output_Image/Zuri_AI_HairCareTip.png)
 
@@ -198,7 +216,7 @@ Here is a visual tour of the Zuri platform across the workflow.
   ![Hair Care Tips](Output_Image/Zuri_Hair_result_02.png)
 
 - **6.Customer Flow - AI Diagnostics Studio**
-   ![AI Diagnostics Studio](Output_Image\Zuri_AI_Diagonstic.png)
+   ![AI Diagnostics Studio](Output_Image/Zuri_AI_Diagonstic.png)
   
 - **7.Customer Flow - AI Diagnostics Studio:Skin Care Analysis**
   ![AI Diagnostics Studio](Output_Image/Zuri_AID_Result_A.png)
@@ -223,19 +241,22 @@ Here is a visual tour of the Zuri platform across the workflow.
 
 - **13.Customer Flow - Salon Appointment Booking: Group**
    ![Group Appointment Booking](Output_Image/Zuri_Gbooking_02.png)
+-->
 
 -## Salon side 
-- **14. Salon Side - Salon Dashboard**
+- **1. Salon Side - Salon Dashboard**
   ![Salon Profile](Output_Image/Zuri_SalonDashbroad.png)
 
-- **15. Salon Side - Appointment Dashboard**
+- **2. Salon Side - Appointment Dashboard**
   ![Salon Profile](Output_Image/zuri_salonBooking_2.png)
 
-  **16. Salon Side -Appointment Booking Compeleted**
-  ![Salon Profile](Output_Image/zuri_salonBooking_3.png)
+- **3. Salon Side -Appointment Booking Compeleted**
+   ![Salon Profile](Output_Image/zuri_salonBooking_3.png)
 
-- **10.Customer Flow - AI Review Analysis**
+- **4.Customer Flow - AI Review Analysis**
   ![AI Haircuts](Output_Image/Zuri_Ai_ReviewAnalysis(2).png)
+
+  
 
 
 ## Project Information
