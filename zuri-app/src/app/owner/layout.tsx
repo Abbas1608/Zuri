@@ -7,10 +7,10 @@ import { useAuth } from '@/context/AuthProvider';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 
 const navItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/appointments', label: 'Appointments', icon: CalendarDays },
-  { href: '/reviews', label: 'Reviews', icon: Star },
-  { href: '/profile-setup', label: 'Profile', icon: Settings },
+  { href: '/owner/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/owner/appointments', label: 'Appointments', icon: CalendarDays },
+  { href: '/owner/reviews', label: 'Reviews', icon: Star },
+  { href: '/owner/profile-setup', label: 'Profile', icon: Settings },
 ];
 
 function OwnerLayoutContent({ children }: { children: React.ReactNode }) {

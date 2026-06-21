@@ -63,11 +63,13 @@ export default function ProfileSetupPage() {
     setError(null);
 
     // Check if salon already exists for this owner
-    const { data: existingSalon } = await supabase
+    const { data: existingSalons } = await supabase
       .from('salons')
       .select('id')
       .eq('owner_id', user.id)
-      .single();
+      .limit(1);
+    
+    const existingSalon = existingSalons?.[0];
 
     const salonPayload = {
       owner_id: user.id,

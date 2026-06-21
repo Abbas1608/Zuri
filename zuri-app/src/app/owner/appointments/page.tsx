@@ -28,11 +28,12 @@ export default function AppointmentsPage() {
   useEffect(() => {
     async function load() {
       if (!user) return;
-      const { data: salonData } = await supabase
+      const { data: salonDataList } = await supabase
         .from('salons')
         .select('id')
         .eq('owner_id', user.id)
-        .single();
+        .limit(1);
+      const salonData = salonDataList?.[0];
       if (!salonData) { setLoading(false); return; }
       setSalonId(salonData.id);
 
@@ -111,7 +112,7 @@ export default function AppointmentsPage() {
       {!salonId && !loading && (
         <div className="glass-panel rounded-2xl p-8 border border-amber-500/20 text-center">
           <p className="text-slate-400">Set up your salon profile first to see appointments.</p>
-          <a href="/profile-setup" className="mt-4 inline-block px-6 py-2.5 bg-amber-500 text-slate-900 rounded-xl text-sm font-medium">
+          <a href="/owner/profile-setup" className="mt-4 inline-block px-6 py-2.5 bg-amber-500 text-slate-900 rounded-xl text-sm font-medium">
             Set Up Salon →
           </a>
         </div>
@@ -139,7 +140,7 @@ export default function AppointmentsPage() {
               const isReminded = reminded.includes(a.id);
               const booking = a as unknown as { id: string; date: string; time: string; status: string; users: { name: string; email: string } | null; services: { name: string; price: number } | null };
               return (
-                <div key={booking.id} className="grid grid-cols-[1fr_1fr_1fr_100px_160px] gap-4 px-6 py-4 items-center hover:bg-white/[0.02] transition-colors">
+                <div key={booking.id} className="grid grid-cols-[1fr_1fr_1fr_100px_160px] gap-4 px-6 py-4 items-center hover:bg-white/2 transition-colors">
                   <div>
                     <p className="text-white text-sm font-medium">{booking.users?.name ?? 'Unknown'}</p>
                     <p className="text-slate-500 text-xs">{booking.users?.email ?? '—'}</p>

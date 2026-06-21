@@ -44,7 +44,7 @@ export default function SignupPage() {
         setMessage('✅ Check your email to confirm your account, then log in.');
       } else if (data.session) {
         // Auto-confirmed (email confirmation disabled)
-        router.push(role === 'owner' ? '/dashboard' : '/home');
+        router.push(role === 'owner' ? '/owner/dashboard' : '/home');
       }
     } else {
       // Login
@@ -57,7 +57,7 @@ export default function SignupPage() {
         setError(error.message);
       } else if (data.user) {
         const userRole = data.user.user_metadata?.role ?? 'customer';
-        router.push(userRole === 'owner' ? '/dashboard' : '/home');
+        router.push(userRole === 'owner' ? '/owner/dashboard' : '/home');
       }
     }
 
@@ -81,15 +81,14 @@ export default function SignupPage() {
 
         {/* Split Panel */}
         <div className="grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-          
+
           {/* Left: Customer Side */}
           <button
             onClick={() => setRole('customer')}
-            className={`relative p-8 text-left transition-all duration-500 ${
-              role === 'customer' 
-                ? 'bg-gradient-to-br from-slate-800 to-slate-900' 
-                : 'bg-slate-950 opacity-60 hover:opacity-80'
-            }`}
+            className={`relative p-8 text-left transition-all duration-500 ${role === 'customer'
+              ? 'bg-linear-to-br from-slate-800 to-slate-900'
+              : 'bg-slate-950 opacity-60 hover:opacity-80'
+              }`}
           >
             <div className="absolute inset-0 bg-cover bg-center opacity-10"
               style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800")' }} />
@@ -111,11 +110,10 @@ export default function SignupPage() {
           {/* Right: Owner Side */}
           <button
             onClick={() => setRole('owner')}
-            className={`relative p-8 text-left transition-all duration-500 ${
-              role === 'owner' 
-                ? 'bg-gradient-to-br from-slate-800 to-slate-900' 
-                : 'bg-slate-950 opacity-60 hover:opacity-80'
-            }`}
+            className={`relative p-8 text-left transition-all duration-500 ${role === 'owner'
+              ? 'bg-linear-to-br from-slate-800 to-slate-900'
+              : 'bg-slate-950 opacity-60 hover:opacity-80'
+              }`}
           >
             <div className="absolute inset-0 bg-cover bg-center opacity-10"
               style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800")' }} />

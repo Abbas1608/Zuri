@@ -27,7 +27,7 @@ export default function LoginPage() {
       setError(error.message);
     } else if (data.user) {
       const role = data.user.user_metadata?.role ?? 'customer';
-      router.push(role === 'owner' ? '/dashboard' : '/home');
+      router.push(role === 'owner' ? '/owner/dashboard' : '/home');
     }
 
     setLoading(false);

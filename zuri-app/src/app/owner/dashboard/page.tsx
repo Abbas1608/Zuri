@@ -40,11 +40,13 @@ export default function OwnerDashboardPage() {
       if (!user) return;
 
       // Get owner's salon
-      const { data: salonData } = await supabase
+      const { data: salonDataList } = await supabase
         .from('salons')
         .select('id, name, rating')
         .eq('owner_id', user.id)
-        .single();
+        .limit(1);
+
+      const salonData = salonDataList?.[0];
 
       if (!salonData) { setLoading(false); return; }
       setSalon(salonData);
@@ -127,7 +129,7 @@ export default function OwnerDashboardPage() {
         <div className="glass-panel rounded-2xl p-8 border border-amber-500/20 text-center">
           <p className="text-white text-lg mb-2">Your salon isn&apos;t set up yet!</p>
           <p className="text-slate-400 text-sm mb-4">Complete your profile to start receiving bookings.</p>
-          <a href="/profile-setup" className="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold rounded-xl transition-all inline-block">
+          <a href="/owner/profile-setup" className="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold rounded-xl transition-all inline-block">
             Set Up Salon →
           </a>
         </div>
