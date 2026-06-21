@@ -3,7 +3,7 @@
 <!-- # Zuri
 **Mumbai's Premium AI-Powered Salon Marketplace** -->
 
-![Zuri App](Zuri_Logo.png)
+![Zuri App](Output_Image/Zuri_Logo.png)
 
 [![Version](https://img.shields.io/badge/Version-1.0.0-amber.svg?style=for-the-badge)](#)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](#)
@@ -176,66 +176,66 @@ Navigate to `http://localhost:3000` to view the application!
 Here is a visual tour of the Zuri platform across the workflow.
 
 - **1. Landing Page:**
-  ![Landing Page](Output_Image\Zuri_LandingPage.png)
+  ![Landing Page](Output_Image/Zuri_LandingPage.png)
   
 - **2. Authentication / Signup:**
-  ![Signup Screen](Output_Image\Zuri_AuthScreen.png)
+  ![Signup Screen](Output_Image/Zuri_AuthScreen.png)
 
 ## User Side: Features
 
 - **3.Customer Flow -  User Home Screen:**
-  ![Discover Salons](Output_Image\Zuri_Home_1.png)
+  ![Discover Salons](Output_Image/Zuri_Home_1.png)
   
 - **4. Customer Flow - Zuri AI Feature**
-  ![Diagnostics Tool](Output_Image\Zuri_AIFactures.png)
+  ![Diagnostics Tool](Output_Image/Zuri_AIFactures.png)
 
 ## AI  Based Features
 - **5.Customer Flow - AI Hair Care Tips (input)**
-  ![Hair Care Tips](Output_Image\Zuri_AI_HairCareTip.png)
+  ![Hair Care Tips](Output_Image/Zuri_AI_HairCareTip.png)
 
   **6. Customer Flow - AI Hair Care Tips (output)**
-  ![Hair Care Tips](Output_Image\Zuri_Hair_Result-01.png)
-  ![Hair Care Tips](Output_Image\Zuri_Hair_result_02.png)
+  ![Hair Care Tips](Output_Image/Zuri_Hair_Result-01.png)
+  ![Hair Care Tips](Output_Image/Zuri_Hair_result_02.png)
 
 - **6.Customer Flow - AI Diagnostics Studio**
   ![AI Diagnostics Studio](Output_Image\Zuri_AI_Diagonstic.png)
   
 - **7.Customer Flow - AI Diagnostics Studio:Skin Care Analysis**
-  ![AI Diagnostics Studio](Output_Image\Zuri_AID_Result_A.png)
+  ![AI Diagnostics Studio](Output_Image/Zuri_AID_Result_A.png)
 
 - **8.Customer Flow - AI Diagnostics Studio:Color Analysis**
-  ![AI Diagnostics Studio](Output_Image\Zuri_AID_Result_B.png)
+  ![AI Diagnostics Studio](Output_Image/Zuri_AID_Result_B.png)
 
 - **9.Customer Flow - AI Bandra Style Mirror**
-  ![AI Bandra Style Mirror](Output_Image\Zuri_AI_styleMirror.png)
+  ![AI Bandra Style Mirror](Output_Image/Zuri_AI_styleMirror.png)
 
  **11. Customer Flow - Discover/ Search Salons**
-  ![Booking Screen](Output_Image\Zuri_Search.png)
+  ![Booking Screen](Output_Image/Zuri_Search.png)
 
   **12. Customer Flow - Salon Profile**
-  ![Salon Profile](Output_Image\Zuri_salonProfile.png)
+  ![Salon Profile](Output_Image/Zuri_salonProfile.png)
 
 - **11.Customer Flow - AI Review Analysis|| Sentimental Analysis**
-  ![Owner Dashboard](Output_Image\Zuri_Ai_ReviewAnalysis.png)
+  ![Owner Dashboard](Output_Image/Zuri_Ai_ReviewAnalysis.png)
 
 - **12.Customer Flow - Salon Appointment Booking: Solo**
-  ![Solo Appointment Booking](Output_Image\Zuri_Booking_solo.png)
+  ![Solo Appointment Booking](Output_Image/Zuri_Booking_solo.png)
 
 - **13.Customer Flow - Salon Appointment Booking: Group**
-  ![Group Appointment Booking](Output_Image\Zuri_Gbooking_02.png)
+  ![Group Appointment Booking](Output_Image/Zuri_Gbooking_02.png)
 
 -## Salon side 
 - **14. Salon Side - Salon Dashboard**
-  ![Salon Profile](Output_Image\Zuri_SalonDashbroad.png)
+  ![Salon Profile](Output_Image/Zuri_SalonDashbroad.png)
 
 - **15. Salon Side - Appointment Dashboard**
-  ![Salon Profile](Output_Image\zuri_salonBooking_2.png)
+  ![Salon Profile](Output_Image/zuri_salonBooking_2.png)
 
   **16. Salon Side -Appointment Booking Compeleted**
-  ![Salon Profile](Output_Image\zuri_salonBooking_3.png)
+  ![Salon Profile](Output_Image/zuri_salonBooking_3.png)
 
 - **10.Customer Flow - AI Review Analysis**
-  ![AI Haircuts](Output_Image\Zuri_Ai_ReviewAnalysis(2).png)
+  ![AI Haircuts](Output_Image/Zuri_Ai_ReviewAnalysis(2).png)
 
 
 ## Project Information
