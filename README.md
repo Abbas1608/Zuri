@@ -198,7 +198,7 @@ Here is a visual tour of the Zuri platform across the workflow.
   ![Hair Care Tips](Output_Image/Zuri_Hair_result_02.png)
 
 - **6.Customer Flow - AI Diagnostics Studio**
-  ![AI Diagnostics Studio](Output_Image\Zuri_AI_Diagonstic.png)
+   ![AI Diagnostics Studio](Output_Image\Zuri_AI_Diagonstic.png)
   
 - **7.Customer Flow - AI Diagnostics Studio:Skin Care Analysis**
   ![AI Diagnostics Studio](Output_Image/Zuri_AID_Result_A.png)
@@ -207,7 +207,7 @@ Here is a visual tour of the Zuri platform across the workflow.
   ![AI Diagnostics Studio](Output_Image/Zuri_AID_Result_B.png)
 
 - **9.Customer Flow - AI Bandra Style Mirror**
-  ![AI Bandra Style Mirror](Output_Image/Zuri_AI_styleMirror.png)
+   ![AI Bandra Style Mirror](Output_Image/Zuri_AI_styleMirror.png)
 
  **11. Customer Flow - Discover/ Search Salons**
   ![Booking Screen](Output_Image/Zuri_Search.png)
@@ -222,7 +222,7 @@ Here is a visual tour of the Zuri platform across the workflow.
   ![Solo Appointment Booking](Output_Image/Zuri_Booking_solo.png)
 
 - **13.Customer Flow - Salon Appointment Booking: Group**
-  ![Group Appointment Booking](Output_Image/Zuri_Gbooking_02.png)
+   ![Group Appointment Booking](Output_Image/Zuri_Gbooking_02.png)
 
 -## Salon side 
 - **14. Salon Side - Salon Dashboard**
