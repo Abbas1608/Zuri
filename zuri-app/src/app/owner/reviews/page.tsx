@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { createClient } from "@/utils/supabase/client";
+import { supabase } from "@/lib/supabase";
 import { Loader2, TrendingUp, AlertTriangle, ShieldCheck, ShieldAlert, Star } from "lucide-react";
 
 interface ReviewInsights {
@@ -36,14 +36,13 @@ export default function OwnerReviewsDashboard() {
     async function fetchAndAnalyze() {
       try {
         setLoading(true);
-        const supabase = createClient();
         
         // 1. Fetch current user (Owner)
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) throw new Error("Not authenticated");
 
-        // 2. Fetch the owner's salon
-        // Assuming owner has one salon for this demo
+        let salonId = "";
+
         const { data: salons, error: salonError } = await supabase
           .from("salons")
           .select("id")
@@ -54,10 +53,10 @@ export default function OwnerReviewsDashboard() {
            // Fallback to testing with the first salon in the DB if not an owner
            const { data: anySalon } = await supabase.from("salons").select("id").limit(1);
            if (!anySalon || anySalon.length === 0) throw new Error("No salons found in database.");
-           salons.push(anySalon[0]);
+           salonId = anySalon[0].id;
+        } else {
+           salonId = salons[0].id;
         }
-
-        const salonId = salons[0].id;
 
         // 3. Fetch reviews for the salon
         const { data: reviews, error: reviewsError } = await supabase
@@ -159,7 +158,7 @@ export default function OwnerReviewsDashboard() {
                   </div>
                   <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
                     <motion.div 
-                      initial={{ width: 0 }} animate={{ width: \`\${analysis.sentiment.good}%\` }} transition={{ duration: 1, delay: 0.2 }}
+                      initial={{ width: 0 }} animate={{ width: `${analysis.sentiment.good}%` }} transition={{ duration: 1, delay: 0.2 }}
                       className="h-full bg-green-400 rounded-full" 
                     />
                   </div>
@@ -171,7 +170,7 @@ export default function OwnerReviewsDashboard() {
                   </div>
                   <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
                     <motion.div 
-                      initial={{ width: 0 }} animate={{ width: \`\${analysis.sentiment.neutral}%\` }} transition={{ duration: 1, delay: 0.3 }}
+                      initial={{ width: 0 }} animate={{ width: `${analysis.sentiment.neutral}%` }} transition={{ duration: 1, delay: 0.3 }}
                       className="h-full bg-zinc-500 rounded-full" 
                     />
                   </div>
@@ -183,7 +182,7 @@ export default function OwnerReviewsDashboard() {
                   </div>
                   <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
                     <motion.div 
-                      initial={{ width: 0 }} animate={{ width: \`\${analysis.sentiment.bad}%\` }} transition={{ duration: 1, delay: 0.4 }}
+                      initial={{ width: 0 }} animate={{ width: `${analysis.sentiment.bad}%` }} transition={{ duration: 1, delay: 0.4 }}
                       className="h-full bg-red-400 rounded-full" 
                     />
                   </div>
@@ -276,7 +275,7 @@ export default function OwnerReviewsDashboard() {
               <div key={review.id} className="bg-white/5 border border-white/10 p-5 rounded-2xl">
                 <div className="flex items-center gap-1 mb-3">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className={\`h-4 w-4 \${i < review.rating ? "text-[#FFD700] fill-[#FFD700]" : "text-zinc-600"}\`} />
+                    <Star key={i} className={`h-4 w-4 ${i < review.rating ? "text-[#FFD700] fill-[#FFD700]" : "text-zinc-600"}`} />
                   ))}
                 </div>
                 <p className="text-sm text-zinc-300 line-clamp-3">{review.text}</p>

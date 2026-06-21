@@ -492,15 +492,38 @@ function StyleMirrorContent() {
       if (tags.length > 0) {
         const { data: salonData, error } = await supabase
           .from('salons')
-          .select('id, name, address, style_tags, rating, images')
-          .overlaps('style_tags', tags);
+          .select('id, name, address, style_tags, rating, images');
 
         if (error) {
           console.error('Supabase query error:', error);
           addToast('Database query failed. Please try again.', 'error');
         }
 
-        setSalons(salonData ?? []);
+        const allSalons = salonData ?? [];
+        
+        // Filter salons by style tags (case-insensitive substring match)
+        let matchedSalons = allSalons.filter((salon) => {
+          const salonTags = salon.style_tags ?? [];
+          return salonTags.some((st: string) =>
+            tags.some((t: string) => {
+              const cleanSt = st.toLowerCase().trim();
+              const cleanT = t.toLowerCase().trim();
+              return cleanSt.includes(cleanT) || cleanT.includes(cleanSt);
+            })
+          );
+        });
+
+        // Fallback: if no exact tag matches, show Bandra salons or top rated salons so the user gets relevant recommendations
+        if (matchedSalons.length === 0) {
+          const bandraSalons = allSalons.filter((salon) => 
+            salon.address?.toLowerCase().includes('bandra')
+          );
+          matchedSalons = bandraSalons.length > 0 
+            ? bandraSalons.slice(0, 3) 
+            : allSalons.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0)).slice(0, 3);
+        }
+
+        setSalons(matchedSalons);
       }
 
       setPageState('result');

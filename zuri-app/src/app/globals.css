@@ -7,6 +7,9 @@
   --monsoon-slate: #1e293b;
   --gateway-gold: #d4af37;
   --frosted-pearl: rgba(255, 255, 255, 0.1);
+  --gold-glow: rgba(212, 175, 55, 0.25);
+  --midnight-deep: #070d1a;
+  --rose-dusk: rgba(244, 114, 182, 0.08);
 }
 
 @theme inline {
@@ -33,3 +36,136 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
+
+/* Premium gold glass panel for group booking */
+.glass-panel-gold {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.06) 0%, rgba(255, 255, 255, 0.04) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(212, 175, 55, 0.15);
+}
+
+/* Deep glass panel for guest cards */
+.glass-panel-deep {
+  background: linear-gradient(135deg, rgba(7, 13, 26, 0.8) 0%, rgba(30, 41, 59, 0.6) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Mode toggle pill */
+.mode-toggle-track {
+  background: rgba(7, 13, 26, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 4px;
+  display: flex;
+  position: relative;
+}
+
+.mode-toggle-thumb {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  border-radius: 999px;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Guest card entry animation */
+@keyframes guestCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.guest-card-enter {
+  animation: guestCardIn 0.4s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+}
+
+/* Shimmer skeleton */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.10) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* Gold receipt border */
+.receipt-card {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(7, 13, 26, 0.9) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.1), inset 0 1px 0 rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Dashed receipt divider */
+.receipt-divider {
+  border-top: 1px dashed rgba(212, 175, 55, 0.3);
+}
+
+/* Ambient glow background orbs */
+.booking-bg {
+  background: radial-gradient(ellipse 80% 60% at 20% 0%, rgba(0, 48, 73, 0.5) 0%, transparent 60%),
+              radial-gradient(ellipse 60% 40% at 80% 100%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+              #0f172a;
+  min-height: 100vh;
+}
+
+/* Group guest number badge */
+.guest-badge {
+  background: linear-gradient(135deg, #d4af37 0%, #f5cc5a 100%);
+  color: #0f172a;
+  font-weight: 700;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(212, 175, 55, 0.4);
+}
+
+/* Subtle scrollbar */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Slot time grid hover effect */
+.slot-btn:hover:not(.slot-btn-selected):not(.slot-btn-taken) {
+  border-color: rgba(212, 175, 55, 0.4) !important;
+  background: rgba(212, 175, 55, 0.05) !important;
+}
+
+/* Calendar link glow */
+.cal-link-btn {
+  background: linear-gradient(135deg, rgba(66, 153, 225, 0.15) 0%, rgba(99, 179, 237, 0.08) 100%);
+  border: 1px solid rgba(99, 179, 237, 0.3);
+  transition: all 0.25s ease;
+}
+.cal-link-btn:hover {
+  background: linear-gradient(135deg, rgba(66, 153, 225, 0.25) 0%, rgba(99, 179, 237, 0.15) 100%);
+  box-shadow: 0 0 20px rgba(99, 179, 237, 0.15);
+}
+
+/* Group success confetti pulse */
+@keyframes goldPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+  50% { box-shadow: 0 0 0 16px rgba(212, 175, 55, 0); }
+}
+.gold-pulse {
+  animation: goldPulse 2s ease-in-out infinite;
+}
+
