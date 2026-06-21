@@ -3,7 +3,7 @@
 <!-- # Zuri
 **Mumbai's Premium AI-Powered Salon Marketplace** -->
 
-![Zuri App](Output_Image\Zuri_Logo.png)
+![Zuri App](Zuri_Logo.png)
 
 [![Version](https://img.shields.io/badge/Version-1.0.0-amber.svg?style=for-the-badge)](#)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](#)
