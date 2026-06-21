@@ -29,6 +29,8 @@ Our platform operates on a stunning **Dark Theme** featuring an elegant signatur
 * **What is it:** An intelligent weather-aware module that predicts how local humidity and weather (like Mumbai monsoons) will impact your hair.
 * **Input:** Real-time location data / weather conditions.
 * **Output:** Curated, highly specific hair-care recommendations (e.g., anti-frizz treatments, keratin suggestions) tailored to the day's humidity.
+![AI Humidity Advisor](Output_Image/Zuri_Humidity.png)
+
 
 #### 2. AI Style Mirror
 * **What is it:** A cutting-edge virtual consultation tool that suggests the best haircut and styling tailored to you.
@@ -247,11 +249,14 @@ Here is a visual tour of the Zuri platform across the workflow.
 - **1. Salon Side - Salon Dashboard**
   ![Salon Profile](Output_Image/Zuri_SalonDashbroad.png)
 
-- **2. Salon Side - Appointment Dashboard**
+- **2. Salon Side - Appointment Details Dashboard(All Booking) **
+  ![Salon Profile](Output_Image/zuri_salon_booking1.png)
+
+- **2. Salon Side - Appointment Dashboard (Confirmed Booking)**
   ![Salon Profile](Output_Image/zuri_salonBooking_2.png)
 
 - **3. Salon Side -Appointment Booking Compeleted**
-   ![Salon Profile](Output_Image/zuri_salonBooking_3.png)
+   ![Salon Profile](Output_Image/Zuri_SalonBooking_3.png)
 
 - **4.Customer Flow - AI Review Analysis**
   ![AI Haircuts](Output_Image/Zuri_Ai_ReviewAnalysis(2).png)
