@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { CloudRain, Star, MapPin, ChevronRight, Sparkles, LogOut } from 'lucide-react';
+import { CloudRain, Star, MapPin, ChevronRight, Sparkles, LogOut, Droplets } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/context/AuthProvider';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
@@ -219,6 +219,39 @@ function CustomerHomeContent() {
               className="relative z-10 shrink-0 px-6 py-3 font-bold rounded-xl text-sm transition-all text-slate-900"
               style={{ background: 'linear-gradient(135deg, #d4af37, #b8860b)', boxShadow: '0 0 24px rgba(212,175,55,0.35)' }}>
               Try it →
+            </Link>
+          </div>
+        </section>
+
+        {/* Hair Care Scanner CTA */}
+        <section>
+          <div
+            className="relative rounded-2xl overflow-hidden border p-6 flex items-center justify-between gap-6"
+            style={{
+              background: 'linear-gradient(135deg, rgba(0,48,73,0.55) 0%, rgba(15,23,42,0.8) 100%)',
+              borderColor: 'rgba(212,175,55,0.22)',
+              boxShadow: '0 0 40px rgba(0,48,73,0.3), inset 0 1px 0 rgba(212,175,55,0.08)',
+            }}
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,48,73,0.4),transparent_60%)] pointer-events-none" />
+            <div className="relative z-10">
+              <p className="text-sm uppercase tracking-wider mb-1 flex items-center gap-2" style={{ color: 'rgba(212,175,55,0.85)' }}>
+                <Droplets size={12} /> Mumbai Water Intel
+              </p>
+              <h3 className="text-white font-serif text-xl">Hair Care Scanner</h3>
+              <p className="text-slate-400 text-sm mt-1">Get a hyper-personalised hair prescription based on your Mumbai pincode water TDS. Instant &amp; free.</p>
+            </div>
+            <Link
+              href="/hair-scanner"
+              className="relative z-10 shrink-0 px-6 py-3 font-bold rounded-xl text-sm transition-all"
+              style={{
+                background: 'linear-gradient(135deg, rgba(212,175,55,0.25), rgba(212,175,55,0.1))',
+                border: '1px solid rgba(212,175,55,0.5)',
+                color: '#F5E6C4',
+                boxShadow: '0 0 18px rgba(212,175,55,0.12)',
+              }}
+            >
+              Scan Now →
             </Link>
           </div>
         </section>

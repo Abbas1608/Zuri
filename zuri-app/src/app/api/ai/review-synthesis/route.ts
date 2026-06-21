@@ -37,7 +37,9 @@ Respond in VALID JSON only (no markdown):
 {
   "bestFor": "string (what this salon excels at, based on reviews)",
   "watchOutFor": "string (any consistent negatives or caveats)",
-  "vibe": "string (the atmosphere and experience described in reviews)"
+  "vibe": "string (the atmosphere and experience described in reviews)",
+  "sentiment": { "good": 80, "neutral": 15, "bad": 5 },
+  "authenticity": { "real": 95, "suspicious": 5 }
 }`;
     } else {
       prompt = `You are a business intelligence AI for Zuri, a Mumbai salon marketplace.

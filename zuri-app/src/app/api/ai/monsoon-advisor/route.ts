@@ -5,7 +5,7 @@ import { aiMocks } from '@/utils/ai-mocks';
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
 // ─── Model fallback order (try lite first → full flash on 503) ────────────────
-const MODELS = ['gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-1.5-flash'];
+const MODELS = ['gemini-2.5-flash-lite', 'gemini-2.5-flash'];
 
 export async function POST(request: Request) {
   try {

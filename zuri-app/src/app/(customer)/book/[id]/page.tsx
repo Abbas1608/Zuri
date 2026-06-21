@@ -389,7 +389,6 @@ function SoloBookingView({
         date: dateStr,
         time: selectedTime,
         status: 'pending',
-        group_id: null,
       })
       .select('id')
       .single();
@@ -574,8 +573,6 @@ function GroupBookingView({
       date: g.date.toISOString().split('T')[0],
       time: g.timeSlot!,
       status: 'pending',
-      group_id: groupId,
-      guest_name: g.guestName || null,
     }));
 
     const { data, error: batchError } = await supabase
@@ -1194,8 +1191,6 @@ function GroupBookingViewInner({
       date: g.date.toISOString().split('T')[0],
       time: g.timeSlot!,
       status: 'pending',
-      group_id: groupId,
-      guest_name: g.guestName || null,
     }));
 
     const { data, error: batchError } = await supabase

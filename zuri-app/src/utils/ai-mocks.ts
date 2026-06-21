@@ -24,7 +24,9 @@ export const aiMocks = {
   customerReviewSynthesis: {
     bestFor: "Bridal prep and highly intricate HD makeup (84 reviews agree).",
     watchOutFor: "High wait times on Friday evenings and weekends.",
-    vibe: "Relaxed luxury with complimentary cold brew and ambient lighting."
+    vibe: "Relaxed luxury with complimentary cold brew and ambient lighting.",
+    sentiment: { good: 84, neutral: 12, bad: 4 },
+    authenticity: { real: 96, suspicious: 4 }
   },
 
   adminReviewAnalysis: {

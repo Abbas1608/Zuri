@@ -73,8 +73,8 @@ export async function POST(request: Request) {
       } catch (err: unknown) {
         const e = err as { status?: number };
         lastError = err;
-        if (e?.status === 503) {
-          console.warn(`${modelName} returned 503, trying next model...`);
+        if (e?.status === 503 || e?.status === 429) {
+          console.warn(`${modelName} returned ${e?.status}, trying next model...`);
           continue;
         }
         throw err;
