@@ -1,9 +1,9 @@
 <div align="center">
 
-# 🌟 Zuri 🌟
+# Zuri
 **Mumbai's Premium AI-Powered Salon Marketplace**
 
-<img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800" alt="Zuri Logo" width="250" style="border-radius: 20px; box-shadow: 0 0 20px rgba(212,175,55,0.3); margin-top: 15px; margin-bottom: 25px;">
+<img src="Output_Image\Zuri_LandingPage.png" alt="Zuri Landing Page" width="800" style="border-radius: 20px; box-shadow: 0 0 20px rgba(212,175,55,0.3); margin-top: 15px; margin-bottom: 25px;">
 
 [![Version](https://img.shields.io/badge/Version-1.0.0-amber.svg?style=for-the-badge)](#)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](#)
@@ -14,16 +14,16 @@
 
 <br />
 
-## 📖 Introduction
+## Introduction
 Welcome to **Zuri**, the ultimate digital bridge between beauty seekers and premium salon owners. Built with state-of-the-art Next.js and powered by Google Gemini AI and a Python NLP backend, Zuri offers an intelligent, intuitive, and hyper-personalized salon booking experience. From AI-driven diagnostics predicting how Mumbai's humidity will affect your hair, to AI sentiment analysis that filters out fake reviews—Zuri redefines luxury grooming in the digital age.
 
 Our platform operates on a stunning **Dark Theme** featuring an elegant signature Amber accent color: `Background / Theme Accent Color: #d4af37`, guaranteeing a premium, luxurious feel right from the first click.
 
 ---
 
-## 🤖 AI Features
+## AI Features
 
-### 👤 For Customers (Beauty Seekers)
+### For Customers (Beauty Seekers)
 
 #### 1. Monsoon & Humidity Advisor
 * **What is it:** An intelligent weather-aware module that predicts how local humidity and weather (like Mumbai monsoons) will impact your hair.
@@ -59,7 +59,7 @@ Our platform operates on a stunning **Dark Theme** featuring an elegant signatur
 
 <br />
 
-### 🏪 For Salon Owners (Partners)
+### For Salon Owners (Partners)
 
 #### 1. Manage Bookings
 * **What is it:** A robust daily calendar to organize and transition client appointments.
@@ -83,7 +83,7 @@ Our platform operates on a stunning **Dark Theme** featuring an elegant signatur
 
 ---
 
-## ⚙️ Project Setup & Installation
+## Project Setup & Installation
 
 ### Prerequisites
 - Node.js (v18.17 or higher)
@@ -146,56 +146,56 @@ Navigate to `http://localhost:3000` to view the application!
 
 ---
 
-## 🌈 Project Workflow
+## Project Workflow
 
 <div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
 <pre style="background: transparent; border: none; color: #cbd5e1; font-family: monospace;">
-<span style="color: #60a5fa; font-weight: bold;">[ 🌍 Landing Page ]</span>
+<span style="color: #60a5fa; font-weight: bold;">[ Landing Page ]</span>
         │
         ▼
-<span style="color: #c084fc; font-weight: bold;">[ 🔑 Authentication (Login / Signup) ]</span>
+<span style="color: #c084fc; font-weight: bold;">[ Authentication (Login / Signup) ]</span>
         │
-        ├──► <span style="color: #fbbf24; font-weight: bold;">[ 👤 Customer Flow ]</span>
-        │         ├──► 🧭 Discover Salons
-        │         ├──► 🤖 AI Diagnostics (Skin/Color/Humidity)
-        │         ├──► 🗓️ Booking Engine
-        │         └──► 💇‍♀️ View Hair Care Tips
+        ├──► <span style="color: #fbbf24; font-weight: bold;">[ Customer Flow ]</span>
+        │         ├──► Discover Salons
+        │         ├──► AI Diagnostics (Skin/Color/Humidity)
+        │         ├──► Booking Engine
+        │         └──► View Hair Care Tips
         │
-        └──► <span style="color: #34d399; font-weight: bold;">[ 🏪 Salon Owner Flow ]</span>
-                  ├──► 📊 Analytics Dashboard (Revenue/Footfall)
-                  ├──► 📅 Appointments Management
-                  ├──► 🌟 AI Review Sentiment Dashboard
-                  └──► ⚙️ Profile & Service Setup
+        └──► <span style="color: #34d399; font-weight: bold;">[ Salon Owner Flow ]</span>
+                  ├──► Analytics Dashboard (Revenue/Footfall)
+                  ├──► Appointments Management
+                  ├──► AI Review Sentiment Dashboard
+                  └──► Profile & Service Setup
 </pre>
 </div>
 
 ---
 
-## 🎨 UI Design Showcase
+## UI Design Showcase
 
 Here is a visual tour of the Zuri platform across the workflow.
 
 - **1. Landing Page:**
-  ![Landing Page](Output_image/1_landing.png)
+  ![Landing Page](./Output_image/1_landing.png)
   
 - **2. Authentication / Signup:**
-  ![Signup Screen](Output_image/2_signup.png)
+  ![Signup Screen](./Output_image/2_signup.png)
 
 - **3. Customer Flow - Discover Salons:**
-  ![Discover Salons](Output_image/3_discover.png)
+  ![Discover Salons](./Output_image/3_discover.png)
   
 - **4. Customer Flow - AI Diagnostics Studio:**
-  ![Diagnostics Tool](Output_image/4_diagnostics.png)
+  ![Diagnostics Tool](./Output_image/4_diagnostics.png)
 
 - **5. Customer Flow - Salon Booking:**
-  ![Booking Screen](Output_image/5_booking.png)
+  ![Booking Screen](./Output_image/5_booking.png)
 
 - **6. Salon Owner Flow - Analytics Dashboard:**
-  ![Owner Dashboard](Output_image/6_owner_dashboard.png)
+  ![Owner Dashboard](./Output_image/6_owner_dashboard.png)
 
 ---
 
-## ℹ️ Project Information
+## Project Information
 
 * **Version:** 1.0.0
 * **Framework:** Next.js 15 (App Router)
@@ -209,6 +209,6 @@ Here is a visual tour of the Zuri platform across the workflow.
 
 <div align="center">
   <p style="color: #d4af37; font-size: 16px; font-style: italic; font-weight: bold;">
-    ✨ Elevating beauty through the precision of Artificial Intelligence. Where technology meets elegance. ✨
+    Elevating beauty through the precision of Artificial Intelligence. Where technology meets elegance.
   </p>
 </div>
