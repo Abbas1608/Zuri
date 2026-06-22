@@ -15,6 +15,8 @@
 <br />
 
 ## Introduction
+<br>
+
 **Welcome to Zuri**.
 
 We built this platform because we believe that finding the right salon shouldn't feel like a gamble, and running a premium salon shouldn't mean fighting against fake reviews.
